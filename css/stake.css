@@ -1,0 +1,170 @@
+#stake-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 88%;
+}
+
+.stake-stat {
+    width: 25%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.stake-stat button {
+    width: 75%;
+}
+
+#import-run {
+    margin-top: 10px;
+}
+
+.staked, .staked:hover {
+    background-color: #00B894;
+}
+
+.staked, .unstaked {
+    margin-bottom: 10px;
+}
+
+.unstaked {
+    background-color: gray;
+}
+
+.unstaked:hover {
+    background-color: gray;
+}
+
+.staked:hover, .unstaked:hover {
+    cursor: default;
+}
+
+.stake-stat p{
+    text-align: center;
+}
+
+.border-right {
+    border-right: solid 3px rgba(0, 0, 0, 0.568);
+}
+
+#stake-controls-container {
+    text-align: center;
+}
+
+.stake-controls {
+    width: 40%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    display: inline-block;
+}
+
+.stake-controls p {
+    padding-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.stake-controls button {
+    width: 40% !important;
+    background-color: black;
+}
+
+.stake-controls a:hover {
+    background-color: rgb(244 114 182);
+}
+
+#runners {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; */
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+.runner {
+    width: 22%;
+    margin: 1%;
+    text-align: center;
+    display: inline-block;
+}
+
+.runner.active .select {
+    background-color: rgb(244 114 182);
+}
+
+.runner img {
+    width: 90%;
+}
+
+.runner p {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.runner button {
+    width: 90%;
+}
+
+@media screen and (max-width: 767px) {
+    .section {
+        padding-top: 15px;
+        padding-bottom: 15px !important;
+    }
+
+    #stake-stats.box {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    #stake-stats {
+        display: initial;
+    }
+    
+    .stake-stat {
+        padding: 5%;
+        width: 95%;
+        background-color: white;
+        margin: auto;
+        margin-top: 2%;
+        background-color: white;
+        -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.568);
+        -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.568);
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.568);
+    }
+
+    .stake-stat button {
+        width: 90%;
+    }
+
+    .border-right {
+        border-right: none;
+    }
+
+    .stake-controls {
+        width: 95%;
+        margin-top: 2%;
+        display: inline-block;
+    }
+
+    .stake-controls button {
+        width: 49% !important;
+    }
+
+    #runners {
+        display: initial;
+    }
+
+    .runner {
+        width: 95%;
+        display: inline-block;
+        margin: 2.5%;
+        margin-top: 10%;
+    }
+
+}
