@@ -568,6 +568,9 @@ async function endLoading(tx, txStatus) {
     await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
+    if ($("#approval-popup").length) {
+        hideApprovalDiv();
+    }
     if (pendingTransactions.size == 0) {
         await updateClaimingInfo();
     }
