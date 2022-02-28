@@ -117,22 +117,24 @@
 }
   
 .increment-button {
-    width: 15%;
-    font-size: calc(25px + 3vw) !important;
-    line-height: calc(25px + 3vw) !important;
-    background-color: transparent;
+    font-size: calc(5px + 2vw) !important;
+    line-height: calc(20px + 1.5vw) !important;
+    width: 50px;
+    width: 30%;
 }
 
 .increment-button:hover {
     opacity: .75;
 }
-
   
-#number-to-mint {
-    font-size: calc(20px + 3vw) !important;
-    line-height: calc(20px + 3vw) !important;
+#number-to-mint-v1, #number-to-mint-v2, #number-to-mint-v3 {
+    font-size: calc(20px + 1.5vw) !important;
+    line-height: calc(20px + 1.5vw) !important;
     letter-spacing: 5px;
     font-weight: bolder;
+    padding:10%;
+    width: 40%;
+    padding-top: 2%;
 }
   
 #mint-prompt {
@@ -142,6 +144,18 @@
   
 #mint-tools {
     width: 100%;
+}
+
+#mint-plus, #mint-minus {
+    position: absolute;
+}
+
+#mint-plus {
+    right: 5%;
+}
+
+#mint-minus {
+    left: 5%
 }
 
 /* end minting styling */
@@ -192,15 +206,15 @@
     
     .increment-button {
       touch-action: manipulation;
-      width: initial;
+      width: 30%;
       font-size: calc(20px + 4.5vw) !important;
       line-height: calc(20px + 3.5vw) !important;
-      background-color: transparent;
     }
     
-    #number-to-mint {
+    #number-to-mint-v1, #number-to-mint-v2, #number-to-mint-v3 {
       font-size: calc(25px + 3.5vw) !important;
       line-height: calc(25px + 3.5vw) !important;
+      padding: 13%;
     }
 
     #sold-out {

@@ -117,7 +117,7 @@
         padding-bottom: 15px !important;
     }
 
-    #stake-stats.box {
+    #stake-stats.box, #mobile-stake-stats.box {
         background-color: transparent;
         box-shadow: none;
     }
@@ -125,9 +125,31 @@
     #stake-stats {
         display: initial;
     }
+
+    #mobile-stake-stats {
+        margin: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+        width: 100%;
+    }
+
+    .mobile-stat {
+        width: 46% !important;
+        margin: .7% !important;
+        display: inline-block;
+        padding: 3% !important;
+    }
+
+    /* .mobile-stat h1 {
+        font-size: 4vh !important;
+        line-height: 4vh !important;
+    } */
     
     .stake-stat {
-        padding: 5%;
+        padding: 6%;
         width: 95%;
         background-color: white;
         margin: auto;

@@ -78,6 +78,15 @@ p {
 	height: 70%;
   }
 
+  #account:hover {
+	background-color: rgb(244 114 182);
+  }
+
+  #account.connected:hover, #mobile-account.connected:hover {
+	  cursor: default;
+	  background-color: black;
+  }
+
 
 .body {
 	/* background-image: url(../images/bg.png); */
@@ -254,7 +263,7 @@ h5 {
     box-shadow: 0 0 5000px 5000px rgba(0,0,0,0.88);
 }
 
-#error-popup, #status-popup {
+#error-popup, #status-popup, #approval-popup {
 	background-color: white;
     z-index: 99999;
     position:fixed;
@@ -269,7 +278,7 @@ h5 {
     box-shadow: 0 0 5000px 5000px rgba(0,0,0,0.88);
 }
 
-#error-popup p, #status-popup p {
+#error-popup p, #status-popup p, #approval-popup p {
     width: 100%;
     font-size: 2.5vw !important;
     line-height: 2.7vw !important;
@@ -280,6 +289,12 @@ h5 {
 	padding: 1vw;
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+#approval-popup button {
+	width: 48%;
+	font-size: 2.5vw !important;
+    line-height: 2.7vw !important;
 }
 
 @keyframes blinker {
@@ -454,17 +469,30 @@ h5 {
 		line-height: 5.4vh !important;
 	}
 
-    #error-popup, #status-popup {
+    #error-popup, #status-popup, #approval-popup {
         width: 75vw;
         height: 15vh;
 		border-width: 5px;
     }
 
-    #error-popup p, #status-popup p {
+	#approval-popup {
+        height: 30vh;
+	}
+
+    #error-popup p, #status-popup p, #approval-popup p {
         font-size: 4vw !important;
 		line-height: 4.2vw !important;
 		width: 80%;
     }
+
+	#approval-popup button {
+        font-size: 4vw !important;
+		line-height: 4.2vw !important;
+    }
+
+	#approval-popup p {
+		width: 90%;
+	}
 
 }
 

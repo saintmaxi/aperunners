@@ -1,3 +1,7 @@
+.section {
+    padding-top: 50px;
+}
+
 #serums {
     display: flex;
     flex-direction: row;
@@ -10,6 +14,7 @@
 .serum {
     width: 30%;
     text-align: center;
+    position: relative;
 }
 
 .serum img {
@@ -22,8 +27,9 @@
     margin-bottom: 10px;
 }
 
-.serum button {
-    width: 90%;
+.buy-button {
+    width: 100%;
+    margin-top: 5%;
 }
 
 @media screen and (max-width: 767px) {
@@ -37,6 +43,10 @@
         display: inline-block;
         margin: 2.5%;
         margin-top: 10%;
+    }
+
+    .supply-div {
+        padding: 5px !important;
     }
 
 }

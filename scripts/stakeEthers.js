@@ -2,9 +2,9 @@
 /********************************PRODUCTION CONFIG********************************/
 /*********************************************************************************/
 
-// const aperunnersAddress = "";
+// const aperunnersAddress = "0x23d29535dd1a10D8783f76A5bD32C860262B8191";
 // const aperunnersAbi = () => {
-//     return ``;
+//     return `[{"inputs":[{"internalType":"string","name":"unrevealedURI_","type":"string"},{"internalType":"bytes32","name":"merkleRoot_","type":"bytes32"},{"internalType":"address","name":"opensea_","type":"address"},{"internalType":"address","name":"looksrare_","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_owner","type":"address"},{"indexed":true,"internalType":"address","name":"_approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_owner","type":"address"},{"indexed":true,"internalType":"address","name":"_operator","type":"address"},{"indexed":false,"internalType":"bool","name":"_approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"bytes","name":"data","type":"bytes"}],"name":"AuthorizationForbidden","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"bytes","name":"data","type":"bytes"}],"name":"AuthorizationGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"}],"name":"OwnershipTransfered","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"by","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":true,"internalType":"address","name":"_to","type":"address"},{"indexed":true,"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"by","type":"address"}],"name":"Unpaused","type":"event"},{"inputs":[],"name":"MAX_PER_TX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_SUPPLY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to_","type":"address"},{"internalType":"bytes","name":"data_","type":"bytes"}],"name":"auth","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"baseExtension","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"baseURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount_","type":"uint256"}],"name":"claim","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount_","type":"uint256"},{"internalType":"bytes32[]","name":"proof_","type":"bytes32[]"}],"name":"claimWhitelist","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"to_","type":"address"},{"internalType":"bytes","name":"data_","type":"bytes"}],"name":"forbid","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user_","type":"address"},{"internalType":"bytes","name":"data_","type":"bytes"}],"name":"isAuthorized","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user_","type":"address"},{"internalType":"bytes32[]","name":"proof_","type":"bytes32[]"}],"name":"isWhitelisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"looksrare","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"marketplacesApproved","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"merkleRoot","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"opensea","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data_","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"saleState","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"baseURI_","type":"string"},{"internalType":"string","name":"baseExtension_","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"looksrare_","type":"address"}],"name":"setLooksrare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"merkleRoot_","type":"bytes32"}],"name":"setMerkleRoot","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"opensea_","type":"address"}],"name":"setOpensea","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"saleState_","type":"uint256"}],"name":"setSaleState","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"unrevealedURI_","type":"string"}],"name":"setUnrevealedURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"toggleMarketplacesApproved","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"togglePaused","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId_","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"tokensOfOwner","outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner_","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unrevealedURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"whitelistMinted","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount_","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]`;
 // };
 
 // const runAddress = "";
@@ -138,8 +138,19 @@ const getRunBalance = async()=>{
 
 const getPendingRunBalance = async()=>{ // need to add up by total of each token (erroring out?)
     let userAddress = await getAddress();
-    let pendingRun = await apeVault.earned(userAddress);
-    $("#claimable-run").html(`${(Number(formatEther(pendingRun))).toFixed(2)}`);
+    let pendingRun;
+    try {
+        pendingRun = 0;
+        pendingRunArray = await apeVault.earned(userAddress);
+        for (let i = 0; i < pendingRunArray.length; i++) {
+            pendingRun += Number(formatEther(pendingRunArray[i]));
+        }
+    }
+    catch {
+        pendingRun = 0.0
+    }
+    $("#claimable-run").html(pendingRun);
+    $("#claimable-run-mobile").html(pendingRun);
     return pendingRun;
 };
 
@@ -156,100 +167,199 @@ const claim = async() => {
 
 // Staking functions
 
+//Approval
+
+const approveRunnersToVault = async() => {
+    await aperunners.setApprovalForAll(apeVaultAddress, true).then (async (tx_) => {
+        await waitForTransaction(tx_);
+        $("#approval-button").html(`Approving<span class="one">.</span><span class="two">.</span><span class="three">.</span>`);
+    });
+};
+
+var hideApproval = false;
+
+const checkRunnersApproval = async() => {
+    let userAddress = await getAddress();
+    let approved = await aperunners.isApprovedForAll(userAddress, apeVaultAddress);
+    if (!approved && !hideApproval) {
+        await displayApprovalMessage()
+    }
+}
+
+async function displayApprovalMessage() {
+    if (!($("#approval-popup").length)) {
+        let fakeJSX = `<div id="approval-popup">
+                        <p>Before staking, you must approve the Ape Vault staking contract to move your Ape Runners.
+                            <br>
+                            <br>
+                            <button class="button" id="approval-button" onclick="approveRunnersToVault()">APPROVE</button>
+                            <button class="button" onclick="hideApprovalDiv()">NOT NOW</button>
+                        </p>
+                        </div>`;
+        $("body").append(fakeJSX);
+        let height = $(document).height();
+        $("body").append(`<div id='block-screen-approval' style="height:${height}px"></div>`);
+    }
+}
+
+function hideApprovalDiv() {
+    $("#approval-popup").remove();
+    $("#block-screen-approval").remove();
+    hideApproval = true;
+}
+
+
+// Staking
+
 const stakeByIds = async()=>{
-    if (selectedForStaking.size == 0) {
-        displayErrorMessage("Select at least 1 Ape Runner to stake!")
+    try {
+        if (selectedForStaking.size == 0) {
+            displayErrorMessage("Select at least 1 Ape Runner to stake!")
+        }
+        else if ((await getAperunnersEnum()) == 0) {
+            displayErrorMessage("No available Ape Runners to stake!")
+        }
+        else {
+            const runnersArray = Array.from(selectedForStaking);
+        
+            await apeVault.deposit(runnersArray).then( async(tx_) => {
+                for (let i = 0; i < runnersArray.length; i++) {
+                    $(`#runner-${runnersArray[i]}`).remove();
+                }
+                selectedForStaking = new Set();
+                $("#selected-for-staking").text("None");
+                await waitForTransaction(tx_);
+            });
+        }
     }
-    else if ((await getAperunnersEnum()) == 0) {
-        displayErrorMessage("No available Ape Runners to stake!")
-    }
-    else {
-        const runnersArray = Array.from(selectedForStaking);
-    
-        await apeVault.deposit(runnersArray).then( async(tx_) => {
-            for (let i = 0; i < runnersArray.length; i++) {
-                $(`#runner-${runnersArray[i]}`).remove();
-            }
-            selectedForStaking = new Set();
-            $("#selected-for-staking").text("None");
-            await waitForTransaction(tx_);
-        });
+    catch (error) {
+        if ((error.message).includes("transfer caller is not owner nor approved")) {
+            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
+        }
+        else if ((error.message).includes("User denied transaction signature")) {
+            console.log("Transaction rejected.");
+        }
+        else {
+            await displayErrorMessage("An error occurred. See console and window alert for details...")
+            window.alert(error);
+            console.log(error);
+        }
     }
 };
 
 const stakeAll = async()=>{
-    if ((await getAperunnersEnum()) == 0) {
-        displayErrorMessage("No available Ape Runners to stake!")
+    try {
+        if ((await getAperunnersEnum()) == 0) {
+            displayErrorMessage("No available Ape Runners to stake!")
+        }
+        else {
+            const runnersArray = await getAperunnersOwned();
+        
+            await apeVault.deposit(runnersArray).then( async(tx_) => {
+                for (let i = 0; i < runnersArray.length; i++) {
+                    $(`#runner-${runnersArray[i]}`).remove();
+                }
+                selectedForStaking = new Set();
+                $("#selected-for-staking").text("None");
+                await waitForTransaction(tx_);
+            });
+        }
     }
-    else {
-        const runnersArray = await getAperunnersOwned();
-    
-        await apeVault.deposit(turtlesArray).then( async(tx_) => {
-            for (let i = 0; i < runnersArray.length; i++) {
-                $(`#runner-${runnersArray[i]}`).remove();
-            }
-            selectedForStaking = new Set();
-            $("#selected-for-staking").text("None");
-            await waitForTransaction(tx_);
-        });
+    catch (error) {
+        if ((error.message).includes("transfer caller is not owner nor approved")) {
+            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
+        }
+        else if ((error.message).includes("User denied transaction signature")) {
+            console.log("Transaction rejected.");
+        }
+        else {
+            await displayErrorMessage("An error occurred. See console and window alert for details...")
+            window.alert(error);
+            console.log(error);
+        }
     }
 };
 
 const unstakeByIds = async()=>{
-    const numStaked = await getStakedAperunnersEnum();
-    if (numStaked == 0) {
-        displayErrorMessage("No Ape Runners staked!")
+    try {
+        const numStaked = await getStakedAperunnersEnum();
+        if (numStaked == 0) {
+            displayErrorMessage("No Ape Runners staked!")
+        }
+        else if (selectedForUnstaking.size == 0) {
+            displayErrorMessage("Select at least 1 Ape Runner to unstake!")
+        }
+        else {
+            const runnersArray = Array.from(selectedForUnstaking);
+            await apeVault.withdraw(runnersArray).then( async(tx_) => {
+                for (let i = 0; i < runnersArray.length; i++) {
+                    $(`#runner-${runnersArray[i]}`).remove();
+                }
+                selectedForUnstaking = new Set();
+                $("#selected-for-unstaking").text("None");
+                // $("#shell-to-claim").text(`$SHELL to Claim: 0`);
+                await waitForTransaction(tx_);
+            }); 
+        }
     }
-    else if (selectedForUnstaking.size == 0) {
-        displayErrorMessage("Select at least 1 Ape Runner to unstake!")
-    }
-    else {
-        const runnersArray = Array.from(selectedForUnstaking);
-        await apeVault.withdraw(runnersArray).then( async(tx_) => {
-            for (let i = 0; i < runnersArray.length; i++) {
-                $(`#runner-${runnersArray[i]}`).remove();
-            }
-            selectedForUnstaking = new Set();
-            $("#selected-for-unstaking").text("None");
-            // $("#shell-to-claim").text(`$SHELL to Claim: 0`);
-            await waitForTransaction(tx_);
-        }); 
+    catch (error) {
+        if ((error.message).includes("transfer caller is not owner nor approved")) {
+            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
+        }
+        else if ((error.message).includes("User denied transaction signature")) {
+            console.log("Transaction rejected.");
+        }
+        else {
+            await displayErrorMessage("An error occurred. See console and window alert for details...")
+            window.alert(error);
+            console.log(error);
+        }
     }
 }
 
 const unstakeAll = async()=>{
-    const numStaked = await getStakedAperunnersEnum();
-    if (numStaked == 0) {
-        displayErrorMessage("No Ape Runners staked!")
+    try {
+        const numStaked = await getStakedAperunnersEnum();
+        if (numStaked == 0) {
+            displayErrorMessage("No Ape Runners staked!")
+        }
+        else {
+            const runnersArray = await getStakedAperunnersOwned();
+            await apeVault.withdraw(runnersArray).then( async(tx_) => {
+                for (let i = 0; i < runnersArray.length; i++) {
+                    $(`#runner-${runnersArray[i]}`).remove();
+                }
+                selectedForUnstaking = new Set();
+                $("#selected-for-unstaking").text("None");
+                // $("#shell-to-claim").text(`$SHELL to Claim: 0`);
+                await waitForTransaction(tx_);
+            }); 
+        }
     }
-    else {
-        const runnersArray = await getStakedAperunnersOwned();
-        await apeVault.withdraw(runnersArray).then( async(tx_) => {
-            for (let i = 0; i < runnersArray.length; i++) {
-                $(`#runner-${runnersArray[i]}`).remove();
-            }
-            selectedForUnstaking = new Set();
-            $("#selected-for-unstaking").text("None");
-            // $("#shell-to-claim").text(`$SHELL to Claim: 0`);
-            await waitForTransaction(tx_);
-        }); 
+    catch (error) {
+        if ((error.message).includes("transfer caller is not owner nor approved")) {
+            await displayErrorMessage(`Error: You must approve Ape Vault! Reload page to see prompt again.`)
+        }
+        else if ((error.message).includes("User denied transaction signature")) {
+            console.log("Transaction rejected.");
+        }
+        else {
+            await displayErrorMessage("An error occurred. See console and window alert for details...")
+            window.alert(error);
+            console.log(error);
+        }
     }
 }
 
 
-// var currentlyStaked = [];
-// var imagesLoaded = false;
+var currentlyStaked = [];
 
 const getAperunnersImages = async()=>{
     $("#runners").empty();
     $("#runners").append(`<br><h3>Loading Ape Runners<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>`);
 
-
-    const unstakedRunnersNum =4;
-    const stakedRunnersNum = 4;
-
-    // const unstakedRunnersNum = await getAperunnersEnum();
-    // const stakedRunnersNum = await getStakedAperunnersEnum();
+    const unstakedRunnersNum = await getAperunnersEnum();
+    const stakedRunnersNum = await getStakedAperunnersEnum();
     const totalAperunners = unstakedRunnersNum + stakedRunnersNum;
     if (totalAperunners == 0) {
         $("#runners").empty();
@@ -259,8 +369,8 @@ const getAperunnersImages = async()=>{
         let batchFakeJSX = "";
 
         // Get staked first
-        // const stakedRunners = await getStakedAperunnersOwned();
-        const stakedRunners = [1,2,3,4];
+        const stakedRunners = await getStakedAperunnersOwned();
+        currentlyStaked = stakedRunners;
         for (let i = 0; i < stakedRunnersNum; i++) {
             let id = stakedRunners[i];
             let active= "";
@@ -271,14 +381,14 @@ const getAperunnersImages = async()=>{
             batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
                                 <img src="${baseImageURI}${id}.png">
                                 <p>Ape Runner #${id}</p>
+                                <p>$RUN Earned: <span id="run-earned-${id}"><span class="one">.</span><span class="two">.</span><span class="three">.</span>​</span></p>
                                 <button class="button staked">STAKED</button>
                                 <button id="button-${id}" class="button select" onclick="selectForUnstaking(${id})">UNSTAKE</button>
                              </div>`
         };
 
         // Get unstaked last
-        // const unstakedRunners = await getAperunnersOwned();
-        const unstakedRunners = [5,6,7,8];
+        const unstakedRunners = await getAperunnersOwned();
         for (let i = 0; i < unstakedRunnersNum; i++) {
             let id = unstakedRunners[i];
             let active= "";
@@ -288,6 +398,7 @@ const getAperunnersImages = async()=>{
             batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
                                 <img src="${baseImageURI}${id}.png">
                                 <p>Ape Runner #${id}</p>
+                                <p>Not earning $RUN!</p>
                                 <button class="button unstaked">NOT STAKED</button>
                                 <button id="button-${id}" class="button select" onclick="selectForStaking(${id})">STAKE</button>
                              </div>`
@@ -307,17 +418,14 @@ const getCocoEarnedByID = async(id) => {
     }
 };
 
-const updateCocoEarned = async() => {
-    let totalEarned = 0;
+const updateRunEarned = async() => {
+    let userAddress = await getAddress();
+    let runEarned = (await apeVault.earned(userAddress)).map(x => Number(formatEther(x)));
     for (let i = 0; i < currentlyStaked.length; i++) {
-        let waveCatcherID = Number(currentlyStaked[i]);
-        let cocoEarnedByID = await getCocoEarnedByID(waveCatcherID);
-        $(`#coco-earned-${waveCatcherID}`).html(`${cocoEarnedByID}`);
-        if (selectedForUnstaking.has(waveCatcherID)) {
-            totalEarned += Number(cocoEarnedByID);
-        }
+        let runnerID = Number(currentlyStaked[i]);
+        let runEarnedByID = runEarned[i];
+        $(`#run-earned-${runnerID}`).html(runEarnedByID);
     };
-    $("#coco-to-claim").html(`$<img src="${cocoImgURL}" class="coco-icon"> to Claim: ${totalEarned.toFixed(2)}`);
 };
 
 const updateClaimingInfo = async()=>{
@@ -327,21 +435,21 @@ const updateClaimingInfo = async()=>{
         await getRunBalance();
         let apeRunnersNum = await getAperunnersEnum();
         let stakedApeRunnersNum = await getStakedAperunnersEnum();
+        let totalAperunners = Number(apeRunnersNum) + Number(stakedApeRunnersNum);
         if (stakedApeRunnersNum == 0) {
             $("#claimable-run").text("0.0");
+            $("#claimable-run-mobile").text("0.0");
         }
         else {
             await getPendingRunBalance();
         }
-        $("#your-aperunners-num").html(`${apeRunnersNum}`);
-        $("#your-aperunners-num-2").html(`${apeRunnersNum}`);
-        $("#staked-aperunners-num").html(`${stakedApeRunnersNum}`);
+        $("#your-aperunners-num").html(totalAperunners);
+        $("#your-aperunners-num-mobile").html(totalAperunners);
+        $("#your-aperunners-num-2").html(totalAperunners);
+        $("#your-aperunners-num-2-mobile").html(totalAperunners);
+        $("#staked-aperunners-num").html(stakedApeRunnersNum);
+        $("#staked-aperunners-num-mobile").html(stakedApeRunnersNum);
         await getAperunnersImages();
-
-        // $("#earn-rate").html(100 * waveCatchersNum);
-        // if (!imagesLoaded) {
-        //     await getWaveCatchersImages();
-        // }
         $("#error-popup").remove();
         $("#refresh-notification").remove();
     } 
@@ -349,9 +457,15 @@ const updateClaimingInfo = async()=>{
         $("#wallet").text(`Wrong Network!`);
         $("#available-aperunners-images").empty();
         $("#available-aperunners-images").text("Error: Wrong Network");
+        $("#your-aperunners-num").html(0);
+        $("#your-aperunners-num-mobile").html(0);
+        $("#your-aperunners-num-2").html(0);
+        $("#your-aperunners-num-2-mobile").html(0);
+        $("#staked-aperunners-num").html(0);
+        $("#staked-aperunners-num-mobile").html(0);
         $("#your-run").html(`0.0`);
         $("#claimable-run").html(`0.0`);
-        // $("#earn-rate").html("0.0");
+        $("#claimable-run-mobile").html("0.0");
         displayErrorMessage("Error: Wrong Network", false);
     }
 };
@@ -409,11 +523,6 @@ async function selectForUnstaking(id) {
     }
     else {
         let selectedForUnstakingArray = Array.from(selectedForUnstaking).sort((a, b) => a - b);
-        // let shellToClaim = 0;
-        // for (let i = 0; i < selectedForUnstakingArray.length; i++) {
-        //     shellToClaim += Number(await getShellEarnedByID(selectedForUnstakingArray[i]));
-        // }
-        // $("#shell-to-claim").text(`$SHELL to Claim: ${shellToClaim.toFixed(2)}`);
         let selectedString = `${selectedForUnstakingArray.join(' ')}`;
         $("#selected-for-unstaking").text(selectedString);
     }
@@ -428,7 +537,7 @@ const waitForTransaction = async(tx_) => {
 };
 
 // Resuming UI display, refreshing market for pending txs across pages
-var pendingTransactions = localStorage.getItem("CocoPendingTxs");
+var pendingTransactions = localStorage.getItem("RunPendingTxs");
 
 if (!pendingTransactions) {
     pendingTransactions = new Set();
@@ -441,11 +550,11 @@ else {
     for (let i =0; i < pendingTxArray.length; i++) {
         waitForTransaction(pendingTxArray[i]);
     }
-    localStorage.removeItem("CocoPendingTxs");
+    localStorage.removeItem("RunPendingTxs");
 }
 
 function cachePendingTransactions() {
-    localStorage.setItem("CocoPendingTxs", JSON.stringify(Array.from(pendingTransactions)));
+    localStorage.setItem("RunPendingTxs", JSON.stringify(Array.from(pendingTransactions)));
 }
 
 function startLoading(tx) {
@@ -478,14 +587,17 @@ async function endLoading(tx, txStatus) {
 
 setInterval(async()=>{
     await updateInfo();
-    // await updateRunEarned();
+    await updateRunEarned();
+    await checkRunnersApproval();
     await getPendingRunBalance();
 }, 5000)
 
 const updateInfo = async () => {
     let userAddress = await getAddress();
     $("#account").text(`${userAddress.substr(0,9)}..`);
+    $("#account").addClass("connected");
     $("#mobile-account").text(`${userAddress.substr(0,9)}...`);
+    $("#mobile-account").addClass("connected");
 };
 
 ethereum.on("accountsChanged", async(accounts_)=>{
@@ -496,6 +608,7 @@ window.onload = async()=>{
     await updateInfo();
     if (pendingTransactions.size < 1) {
         await updateClaimingInfo();
+        await checkRunnersApproval();
     }
 };
 

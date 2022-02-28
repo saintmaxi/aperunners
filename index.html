@@ -76,12 +76,22 @@
       
    </div>
    <div class="section body-section body-1 wf-section">
+      <div id="mobile-stake-stats" class="container w-container box hide-on-desktop">
+         <div class="stake-stat border-right mobile-stat">
+            <h1 id="your-aperunners-num-mobile">???</h1>
+            <p><span class="hide-on-mobile">Ape Runners </span>Owned</p>
+         </div>
+         <div class="stake-stat border-right mobile-stat">
+            <h1><span id="staked-aperunners-num-mobile">???</span>/<span id="your-aperunners-num-2-mobile">???</span></h1>
+            <p><span class="hide-on-mobile">Ape Runners </span>Staked</p>
+         </div>
+      </div>
       <div id="stake-stats" class="container w-container box">
-         <div class="stake-stat border-right">
+         <div class="stake-stat border-right hide-on-mobile">
             <h1 id="your-aperunners-num">???</h1>
             <p>Ape Runners Owned</p>
          </div>
-         <div class="stake-stat border-right">
+         <div class="stake-stat border-right hide-on-mobile">
             <h1><span id="staked-aperunners-num">???</span>/<span id="your-aperunners-num-2">???</span></h1>
             <p>Ape Runners Staked</p>
          </div>
@@ -90,7 +100,8 @@
             <p>$RUN Balance</p>
          </div>
          <div class="stake-stat">
-            <p>You can claim <span id="claimable-run">???</span> $RUN.</p>
+            <h1 class="hide-on-desktop" id="claimable-run-mobile">???</h1>
+            <p>PENDING $RUN<span class="hide-on-mobile">:</span> <span class="hide-on-mobile" id="claimable-run">???</span></p>
             <button class="button" onclick="claim()">CLAIM $RUN</button>
             <button id="import-run" class="button" onclick="importRunToWallet()">TRACK IN WALLET</button>
          </div>
@@ -99,8 +110,8 @@
    <div id="stake-controls-container">
       <div class="box stake-controls">
          <div class="stake-buttons">
-            <button id="stakeAllButton" class="button" onclick="stakeAll()">STAKE ALL</button>
             <button id="stakeSelectedButton" class="button" onclick="stakeByIds()">STAKE SELECTED</button>
+            <button id="stakeAllButton" class="button" onclick="stakeAll()">STAKE ALL</button>
           </div>
           <div style="text-align: center;">
             <p class="selected">Selected:</p>
@@ -109,8 +120,8 @@
       </div>
       <div class="box stake-controls">
          <div class="stake-buttons">
-            <button id="unstakeallButton" class="button" onclick="unstakeAll()">UNSTAKE ALL</button>
             <button id="unstakeSelectedButton" class="button" onclick="unstakeByIds()">UNSTAKE SELECTED</button>
+            <button id="unstakeallButton" class="button" onclick="unstakeAll()">UNSTAKE ALL</button>
          </div>
          <div style="text-align: center;">
             <p class="selected">Selected:</p>
@@ -120,7 +131,7 @@
    </div>
    <div class="section body-section body-1 wf-section">
       <div id="runners">
-         <div class="runner box">
+         <!-- <div class="runner box">
             <img src="https://lh3.googleusercontent.com/bvyf_meOyIp7mjX_Sx78M5dvs6uD3pDM45VmGZmkVj-Hs36Pt0bZxphBzKVP3rYBvtOjEfjeKcgCeHXHRkmFX78IMxG9BV4Bw-Msuw=w600">
             <p>Ape Runner ???</p>
             <button class="button">???</button>
@@ -143,7 +154,7 @@
             <p>Ape Runner ???</p>
             <button class="button">???</button>
             <button class="button" style="margin-top: 10px;">???</button>
-         </div>
+         </div> -->
       </div>
    </div>
    <div>
