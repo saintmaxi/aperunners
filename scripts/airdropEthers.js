@@ -136,7 +136,7 @@ const claimByIds = async()=>{
             displayErrorMessage("No Ape Runners eligible!")
         }
         else if (selectedForClaiming.size == 0) {
-            displayErrorMessage("Select at least 1 Ape Runner to unstake!")
+            displayErrorMessage("Select at least 1 Ape Runner to claim airdrop!")
         }
         else {
             const runnersArray = Array.from(selectedForClaiming);
@@ -155,7 +155,7 @@ const claimByIds = async()=>{
             console.log("Transaction rejected.");
         }
         else if ((error.message).includes("already claimed")) {
-            console.log("Error: Airdrop already claimed!");
+            await displayErrorMessage("Error: Airdrop already claimed!");
         }
         else {
             await displayErrorMessage("An error occurred. See console and window alert for details...")
@@ -175,14 +175,19 @@ const claimAll = async() => {
                 eligible.push(unstaked[i])
             }
         }
-        await run.claim(eligible).then( async(tx_) => {
-            for (let i = 0; i < eligible.length; i++) {
-                $(`#runner-${eligible[i]}`).remove();
-            }
-            selectedForClaiming = new Set();
-            $("#selected-for-claiming").text("None");
-            await waitForTransaction(tx_);
-        }); 
+        if (eligible.length == 0) {
+            displayErrorMessage("No Ape Runners eligible to claim! Must be unstaked to claim.")
+        }
+        else {
+            await run.claim(eligible).then( async(tx_) => {
+                for (let i = 0; i < eligible.length; i++) {
+                    $(`#runner-${eligible[i]}`).remove();
+                }
+                selectedForClaiming = new Set();
+                $("#selected-for-claiming").text("None");
+                await waitForTransaction(tx_);
+            }); 
+        }
     }
     catch (error) {
         if ((error.message).includes("User denied transaction signature")) {
