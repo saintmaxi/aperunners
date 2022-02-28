@@ -430,7 +430,7 @@ const updateRunEarned = async() => {
 
 const updateClaimingInfo = async()=>{
     if ((await getChainId()) === correctChain) {
-        const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>CLAIMING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
+        const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>STAKING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
         let apeRunnersNum = await getAperunnersEnum();
