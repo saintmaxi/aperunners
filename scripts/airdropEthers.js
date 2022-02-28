@@ -78,21 +78,6 @@ const getChainId = async()=>{
     return await signer.getChainId()
 };
 
-const importRunToWallet = async() => {
-    ethereum.request({
-        method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20',
-          options: {
-            address: runAddress,
-            symbol: 'RUN',
-            decimals: 18,
-            image: 'https://lh3.googleusercontent.com/ODaJbQx0V8W6xX9U1vMfrm_7m9QyyRk1wfF8tFk_yWt47XIWhjI3VGnk_WCxUvu331YmeK-5qC8DEeDZruhwdRwl4VTWybml1W9foQ=s130',
-         },
-        },
-      });
-}
-
 const updateCurrentChain = async() => {
     if ((await getChainId()) !== correctChain) {
         displayErrorMessage("Error: Wrong Network!", false);
@@ -137,177 +122,40 @@ const getRunBalance = async()=>{
     return runBalance;
 };
 
-const getPendingRunBalance = async()=>{ // need to add up by total of each token (erroring out?)
-    let userAddress = await getAddress();
-    let pendingRun;
-    try {
-        pendingRun = 0;
-        pendingRunArray = await apeVault.earned(userAddress);
-        for (let i = 0; i < pendingRunArray.length; i++) {
-            pendingRun += Number(formatEther(pendingRunArray[i]));
-        }
-    }
-    catch {
-        pendingRun = 0.0
-    }
-    $("#claimable-run").html(pendingRun);
-    $("#claimable-run-mobile").html(pendingRun);
-    return pendingRun;
-};
+// Airdrop functions
 
-const claim = async() => {
-    if (await getPendingRunBalance() == 0) {
-        await displayErrorMessage("You have no $RUN to claim!");
-    }
-    else {
-        await apeVault.claim().then( async(tx_) => {
-            await waitForTransaction(tx_);
-        }); 
-    }
-};
-
-// Staking functions
-
-//Approval
-
-const approveRunnersToVault = async() => {
-    await aperunners.setApprovalForAll(apeVaultAddress, true).then (async (tx_) => {
-        await waitForTransaction(tx_);
-        $("#approval-button").html(`Approving<span class="one">.</span><span class="two">.</span><span class="three">.</span>`);
-    });
-};
-
-var hideApproval = false;
-
-const checkRunnersApproval = async() => {
-    let userAddress = await getAddress();
-    let approved = await aperunners.isApprovedForAll(userAddress, apeVaultAddress);
-    if (!approved && !hideApproval) {
-        await displayApprovalMessage()
-    }
+const receivedAirdrop = async(id) => {
+    const received = await run.airdroped(id);
+    return received;
 }
 
-async function displayApprovalMessage() {
-    if (!($("#approval-popup").length)) {
-        let fakeJSX = `<div id="approval-popup">
-                        <p>Before staking, you must approve the Ape Vault staking contract to move your Ape Runners.
-                            <br>
-                            <br>
-                            <button class="button" id="approval-button" onclick="approveRunnersToVault()">APPROVE</button>
-                            <button class="button" onclick="hideApprovalDiv()">NOT NOW</button>
-                        </p>
-                        </div>`;
-        $("body").append(fakeJSX);
-        let height = $(document).height();
-        $("body").append(`<div id='block-screen-approval' style="height:${height}px"></div>`);
-    }
-}
-
-function hideApprovalDiv() {
-    $("#approval-popup").remove();
-    $("#block-screen-approval").remove();
-    hideApproval = true;
-}
-
-
-// Staking
-
-const stakeByIds = async()=>{
+const claimByIds = async()=>{
     try {
-        if (selectedForStaking.size == 0) {
-            displayErrorMessage("Select at least 1 Ape Runner to stake!")
+        const numUnstaked = await getAperunnersEnum();
+        if (numUnstaked == 0) {
+            displayErrorMessage("No Ape Runners eligible!")
         }
-        else if ((await getAperunnersEnum()) == 0) {
-            displayErrorMessage("No available Ape Runners to stake!")
-        }
-        else {
-            const runnersArray = Array.from(selectedForStaking);
-        
-            await apeVault.deposit(runnersArray).then( async(tx_) => {
-                for (let i = 0; i < runnersArray.length; i++) {
-                    $(`#runner-${runnersArray[i]}`).remove();
-                }
-                selectedForStaking = new Set();
-                $("#selected-for-staking").text("None");
-                await waitForTransaction(tx_);
-            });
-        }
-    }
-    catch (error) {
-        if ((error.message).includes("transfer caller is not owner nor approved")) {
-            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
-        }
-        else if ((error.message).includes("User denied transaction signature")) {
-            console.log("Transaction rejected.");
-        }
-        else {
-            await displayErrorMessage("An error occurred. See console and window alert for details...")
-            window.alert(error);
-            console.log(error);
-        }
-    }
-};
-
-const stakeAll = async()=>{
-    try {
-        if ((await getAperunnersEnum()) == 0) {
-            displayErrorMessage("No available Ape Runners to stake!")
-        }
-        else {
-            const runnersArray = await getAperunnersOwned();
-        
-            await apeVault.deposit(runnersArray).then( async(tx_) => {
-                for (let i = 0; i < runnersArray.length; i++) {
-                    $(`#runner-${runnersArray[i]}`).remove();
-                }
-                selectedForStaking = new Set();
-                $("#selected-for-staking").text("None");
-                await waitForTransaction(tx_);
-            });
-        }
-    }
-    catch (error) {
-        if ((error.message).includes("transfer caller is not owner nor approved")) {
-            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
-        }
-        else if ((error.message).includes("User denied transaction signature")) {
-            console.log("Transaction rejected.");
-        }
-        else {
-            await displayErrorMessage("An error occurred. See console and window alert for details...")
-            window.alert(error);
-            console.log(error);
-        }
-    }
-};
-
-const unstakeByIds = async()=>{
-    try {
-        const numStaked = await getStakedAperunnersEnum();
-        if (numStaked == 0) {
-            displayErrorMessage("No Ape Runners staked!")
-        }
-        else if (selectedForUnstaking.size == 0) {
+        else if (selectedForClaiming.size == 0) {
             displayErrorMessage("Select at least 1 Ape Runner to unstake!")
         }
         else {
-            const runnersArray = Array.from(selectedForUnstaking);
-            await apeVault.withdraw(runnersArray).then( async(tx_) => {
+            const runnersArray = Array.from(selectedForClaiming);
+            await run.claim(runnersArray).then( async(tx_) => {
                 for (let i = 0; i < runnersArray.length; i++) {
                     $(`#runner-${runnersArray[i]}`).remove();
                 }
-                selectedForUnstaking = new Set();
-                $("#selected-for-unstaking").text("None");
+                selectedForClaiming = new Set();
+                $("#selected-for-claiming").text("None");
                 await waitForTransaction(tx_);
             }); 
         }
     }
     catch (error) {
-        if ((error.message).includes("transfer caller is not owner nor approved")) {
-            await displayErrorMessage(`Error: You must approve Ape Vault!  Reload page to see prompt again.`)
-        }
-        else if ((error.message).includes("User denied transaction signature")) {
+        if ((error.message).includes("User denied transaction signature")) {
             console.log("Transaction rejected.");
+        }
+        else if ((error.message).includes("already claimed")) {
+            console.log("Error: Airdrop already claimed!");
         }
         else {
             await displayErrorMessage("An error occurred. See console and window alert for details...")
@@ -317,30 +165,31 @@ const unstakeByIds = async()=>{
     }
 }
 
-const unstakeAll = async()=>{
+
+const claimAll = async() => {
     try {
-        const numStaked = await getStakedAperunnersEnum();
-        if (numStaked == 0) {
-            displayErrorMessage("No Ape Runners staked!")
+        let unstaked = await getAperunnersOwned();
+        let eligible = [];
+        for (let i = 0; i < unstaked.length; i++) {
+            if (!(await run.airdroped(unstaked[i]))) {
+                eligible.push(unstaked[i])
+            }
         }
-        else {
-            const runnersArray = await getStakedAperunnersOwned();
-            await apeVault.withdraw(runnersArray).then( async(tx_) => {
-                for (let i = 0; i < runnersArray.length; i++) {
-                    $(`#runner-${runnersArray[i]}`).remove();
-                }
-                selectedForUnstaking = new Set();
-                $("#selected-for-unstaking").text("None");
-                await waitForTransaction(tx_);
-            }); 
-        }
+        await run.claim(eligible).then( async(tx_) => {
+            for (let i = 0; i < eligible.length; i++) {
+                $(`#runner-${eligible[i]}`).remove();
+            }
+            selectedForClaiming = new Set();
+            $("#selected-for-claiming").text("None");
+            await waitForTransaction(tx_);
+        }); 
     }
     catch (error) {
-        if ((error.message).includes("transfer caller is not owner nor approved")) {
-            await displayErrorMessage(`Error: You must approve Ape Vault! Reload page to see prompt again.`)
-        }
-        else if ((error.message).includes("User denied transaction signature")) {
+        if ((error.message).includes("User denied transaction signature")) {
             console.log("Transaction rejected.");
+        }
+        else if ((error.message).includes("already claimed")) {
+            await displayErrorMessage("Error: Airdrop already claimed!");
         }
         else {
             await displayErrorMessage("An error occurred. See console and window alert for details...")
@@ -349,9 +198,6 @@ const unstakeAll = async()=>{
         }
     }
 }
-
-
-var currentlyStaked = [];
 
 const getAperunnersImages = async()=>{
     $("#runners").empty();
@@ -366,77 +212,56 @@ const getAperunnersImages = async()=>{
     }
     else {
         let batchFakeJSX = "";
+        // Get unstaked first
+        const unstakedRunners = await getAperunnersOwned();
+        for (let i = 0; i < unstakedRunnersNum; i++) {
+            let id = unstakedRunners[i];
+            if (!(await run.airdroped(id))) {
+                let active= "";
+                if (selectedForStaking.has(Number(id))) {
+                    active = "active";
+                }
+                batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
+                                    <img src="${baseImageURI}${id}.png">
+                                    <p>Ape Runner #${id}</p>
+                                    <p>Airdrop available!</p>
+                                    <button class="button unstaked">NOT STAKED</button>
+                                    <button id="button-${id}" class="button select" onclick="selectForClaiming(${id})">CLAIM AIRDROP</button>
+                                 </div>`
+            }
+        };
 
-        // Get staked first
+        // Get staked last
         const stakedRunners = await getStakedAperunnersOwned();
         currentlyStaked = stakedRunners;
         for (let i = 0; i < stakedRunnersNum; i++) {
             let id = stakedRunners[i];
-            let active= "";
-            if (selectedForUnstaking.has(Number(id))) {
-                active = "active";
+            if (!(await run.airdroped(id))) {
+                let active= "";
+                if (selectedForClaiming.has(Number(id))) {
+                    active = "active";
+                }
+                batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
+                                    <img src="${baseImageURI}${id}.png">
+                                    <p>Ape Runner #${id}</p>
+                                    <p>Airdrop available!</p>
+                                    <button class="button staked">STAKED</button>
+                                    <a href="./index.html">
+                                        <button id="button-${id}" class="button select"">UNSTAKE TO CLAIM</button>
+                                    </a>
+                                 </div>`
             }
-            batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
-                                <img src="${baseImageURI}${id}.png">
-                                <p>Ape Runner #${id}</p>
-                                <p>$RUN Earned: <span id="run-earned-${id}"><span class="one">.</span><span class="two">.</span><span class="three">.</span>​</span></p>
-                                <button class="button staked">STAKED</button>
-                                <button id="button-${id}" class="button select" onclick="selectForUnstaking(${id})">UNSTAKE</button>
-                             </div>`
-        };
-
-        // Get unstaked last
-        const unstakedRunners = await getAperunnersOwned();
-        for (let i = 0; i < unstakedRunnersNum; i++) {
-            let id = unstakedRunners[i];
-            let active= "";
-            if (selectedForStaking.has(Number(id))) {
-                active = "active";
-            }
-            batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
-                                <img src="${baseImageURI}${id}.png">
-                                <p>Ape Runner #${id}</p>
-                                <p>Not earning $RUN!</p>
-                                <button class="button unstaked">NOT STAKED</button>
-                                <button id="button-${id}" class="button select" onclick="selectForStaking(${id})">STAKE</button>
-                             </div>`
         };
         $("#runners").empty();
         $("#runners").append(batchFakeJSX);
     }
 }
 
-const updateRunEarned = async() => {
-    let userAddress = await getAddress();
-    let runEarned = (await apeVault.earned(userAddress)).map(x => Number(formatEther(x)));
-    for (let i = 0; i < currentlyStaked.length; i++) {
-        let runnerID = Number(currentlyStaked[i]);
-        let runEarnedByID = runEarned[i];
-        $(`#run-earned-${runnerID}`).html(runEarnedByID);
-    };
-};
-
 const updateClaimingInfo = async()=>{
     if ((await getChainId()) === correctChain) {
         const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>STAKING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
-        let apeRunnersNum = await getAperunnersEnum();
-        let stakedApeRunnersNum = await getStakedAperunnersEnum();
-        let totalAperunners = Number(apeRunnersNum) + Number(stakedApeRunnersNum);
-        if (stakedApeRunnersNum == 0) {
-            $("#claimable-run").text("0.0");
-            $("#claimable-run-mobile").text("0.0");
-        }
-        else {
-            await getPendingRunBalance();
-        }
-        $("#your-aperunners-num").html(totalAperunners);
-        $("#your-aperunners-num-mobile").html(totalAperunners);
-        $("#your-aperunners-num-2").html(totalAperunners);
-        $("#your-aperunners-num-2-mobile").html(totalAperunners);
-        $("#staked-aperunners-num").html(stakedApeRunnersNum);
-        $("#staked-aperunners-num-mobile").html(stakedApeRunnersNum);
         await getAperunnersImages();
         $("#error-popup").remove();
         $("#refresh-notification").remove();
@@ -445,16 +270,8 @@ const updateClaimingInfo = async()=>{
         $("#wallet").text(`Wrong Network!`);
         $("#runners").empty();
         $("#runners").html("<h2>Error: Wrong Network</h2>");
-        $("#your-aperunners-num").html(0);
-        $("#your-aperunners-num-mobile").html(0);
-        $("#your-aperunners-num-2").html(0);
-        $("#your-aperunners-num-2-mobile").html(0);
-        $("#staked-aperunners-num").html(0);
-        $("#staked-aperunners-num-mobile").html(0);
         $("#your-run").html(`0.0`);
         $("#your-run-mobile").html(`0.0`);
-        $("#claimable-run").html(`0.0`);
-        $("#claimable-run-mobile").html("0.0");
         displayErrorMessage("Error: Wrong Network", false);
     }
 };
@@ -473,46 +290,26 @@ provider.on("network", async(newNetwork, oldNetwork) => {
 //selection helpers
 
 var selectedForStaking = new Set();
-var selectedForUnstaking = new Set();
+var selectedForClaiming = new Set();
 
-async function selectForStaking(id) {
-    if (!selectedForStaking.has(id)) {
-        selectedForStaking.add(id);
+async function selectForClaiming(id) {
+    if (!selectedForClaiming.has(id)) {
+        selectedForClaiming.add(id);
         $(`#button-${id}`).text("DESELECT")
         $(`#runner-${id}`).addClass("active");
     }
     else {
-        selectedForStaking.delete(id);
-        $(`#button-${id}`).text("STAKE")
-        $(`#runner-${id}`).removeClass("active");
-    }
-    if (selectedForStaking.size == 0) {
-        $("#selected-for-staking").text("None");
-    }
-    else {
-        let selectedString = `${Array.from(selectedForStaking).sort((a, b) => a - b).join(' ')}`;
-        $("#selected-for-staking").text(selectedString);
-    }
-}
-
-async function selectForUnstaking(id) {
-    if (!selectedForUnstaking.has(id)) {
-        selectedForUnstaking.add(id);
-        $(`#button-${id}`).text("DESELECT")
-        $(`#runner-${id}`).addClass("active");
-    }
-    else {
-        selectedForUnstaking.delete(id);
+        selectedForClaiming.delete(id);
         $(`#button-${id}`).text("UNSTAKE")
         $(`#runner-${id}`).removeClass("active");
     }
-    if (selectedForUnstaking.size == 0) {
-        $("#selected-for-unstaking").text("None");
+    if (selectedForClaiming.size == 0) {
+        $("#selected-for-claiming").text("None");
     }
     else {
-        let selectedForUnstakingArray = Array.from(selectedForUnstaking).sort((a, b) => a - b);
-        let selectedString = `${selectedForUnstakingArray.join(' ')}`;
-        $("#selected-for-unstaking").text(selectedString);
+        let selectedForClaimingArray = Array.from(selectedForClaiming).sort((a, b) => a - b);
+        let selectedString = `${selectedForClaimingArray.join(' ')}`;
+        $("#selected-for-claiming").text(selectedString);
     }
 }
 
@@ -575,9 +372,6 @@ async function endLoading(tx, txStatus) {
 
 setInterval(async()=>{
     await updateInfo();
-    await updateRunEarned();
-    await checkRunnersApproval();
-    await getPendingRunBalance();
 }, 5000)
 
 const updateInfo = async () => {
@@ -596,7 +390,6 @@ window.onload = async()=>{
     await updateInfo();
     if (pendingTransactions.size < 1) {
         await updateClaimingInfo();
-        await checkRunnersApproval();
     }
 };
 

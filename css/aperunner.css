@@ -1,16 +1,6 @@
 @font-face {  
-	font-family: 'Helvetica Bold';
-	src: URL('../css/Helvetica-Bold-Font.ttf') format('truetype');
-}  
-
-@font-face {  
 	font-family: 'Techna';
 	src: URL('../css/TechnaSans-Regular.otf') format('truetype');
-}  
-
-@font-face {  
-	font-family: 'Helvetica';
-	src: URL('../css/Helvetica.ttf') format('truetype');
 }  
 
 html, body {
@@ -55,7 +45,6 @@ h1 {
 
 p {
 	font-family: "Techna";
-	/* font-family: "Helvetica"; */
 	text-align: justify;
 	font-weight: bold;
 	font-size: 1.4vw !important;
@@ -89,8 +78,6 @@ p {
 
 
 .body {
-	/* background-image: url(../images/bg.png); */
-	/* background-color: white; */
 	font-family: 'Techna', sans-serif;
 	background-size: auto;
 	background-repeat: repeat;
@@ -161,12 +148,10 @@ p {
 .button {
 	touch-action: manipulation;
 	background-color: black;
-    /* border: .3vw black solid; */
 	color: white;
 	font-size: 1.4vw;
 	line-height: 1.7vw;
 	padding: .5vw;
-	/* border-radius: 5px; */
 	font-family: 'Techna', sans-serif;
 	font-weight: bolder;
 }

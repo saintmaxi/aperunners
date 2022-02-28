@@ -1,0 +1,32 @@
+.stake-controls {
+    width: 84.65% !important;
+    margin: auto;
+}
+
+#airdrop-description {
+    width: 70%;
+    margin: auto !important;
+}
+
+.stake-controls button {
+    width: 35% !important;
+}
+
+@media screen and (max-width: 767px) {
+    .stake-controls {
+        width: 95% !important;
+        margin: auto;
+    }
+
+    #airdrop-description {
+        width: 98%;
+    }
+
+    #stakeSelectedButton {
+        margin-bottom: 10px;
+    }
+
+    .stake-controls button {
+        width: 95% !important;
+    }
+}

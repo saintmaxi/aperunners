@@ -89,6 +89,16 @@ const updateCurrentChain = async() => {
     }
 }
 
+// Update $RUN balance
+
+const getRunBalance = async()=>{
+    let userAddress = await getAddress();
+    let runBalance = await run.balanceOf(userAddress);
+    $("#your-run").html(`${(Number(formatEther(runBalance))).toFixed(2)}`);
+    $("#your-run-mobile").html(`${(Number(formatEther(runBalance))).toFixed(2)}`);
+    return runBalance;
+};
+
 // Update serum info
 
 const updateSerumSupplies = async() => {
@@ -114,6 +124,7 @@ const updateSerumInfo = async()=>{
     if ((await getChainId()) === correctChain) {
         const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>SERUM INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
+        await getRunBalance();
         await updateSerumSupplies();
         await updateSerumOwned();
         $("#error-popup").remove();
