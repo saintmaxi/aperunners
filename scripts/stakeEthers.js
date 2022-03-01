@@ -144,7 +144,7 @@ const getPendingRunBalance = async()=>{ // need to add up by total of each token
         pendingRun = 0;
         pendingRunArray = await apeVault.earned(userAddress);
         for (let i = 0; i < pendingRunArray.length; i++) {
-            pendingRun += Number(formatEther(pendingRunArray[i]));
+            pendingRun += Number(Number(formatEther(pendingRunArray[i])).toFixed(2));
         }
     }
     catch {
@@ -408,7 +408,7 @@ const getAperunnersImages = async()=>{
 
 const updateRunEarned = async() => {
     let userAddress = await getAddress();
-    let runEarned = (await apeVault.earned(userAddress)).map(x => Number(formatEther(x)));
+    let runEarned = (await apeVault.earned(userAddress)).map(x => Number(formatEther(x)).toFixed(2));
     for (let i = 0; i < currentlyStaked.length; i++) {
         let runnerID = Number(currentlyStaked[i]);
         let runEarnedByID = runEarned[i];
