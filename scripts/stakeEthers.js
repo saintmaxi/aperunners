@@ -144,12 +144,13 @@ const getPendingRunBalance = async()=>{ // need to add up by total of each token
         pendingRun = 0;
         pendingRunArray = await apeVault.earned(userAddress);
         for (let i = 0; i < pendingRunArray.length; i++) {
-            pendingRun += Number(Number(formatEther(pendingRunArray[i])).toFixed(2));
+            pendingRun += Number(formatEther(pendingRunArray[i]));
         }
     }
     catch {
         pendingRun = 0.0
     }
+    pendingRun = Number(pendingRun).toFixed(2)
     $("#claimable-run").html(pendingRun);
     $("#claimable-run-mobile").html(pendingRun);
     return pendingRun;
