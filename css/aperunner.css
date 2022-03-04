@@ -12,6 +12,12 @@ html, body {
 	background-color: #F1FF10;
 }
 
+#clear-button  {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
 .hidden {
 	display: none !important;
 }

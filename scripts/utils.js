@@ -30,3 +30,10 @@ function toggleMenu() {
     el.classList.toggle('expanded')
     el.classList.toggle('collapsed')
  }
+
+ function clearPendingTxs() {
+    localStorage.removeItem("RunPendingTxs");
+    localStorage.removeItem("SerumPendingTxs");
+    pendingTransactions.clear();
+    location.reload();
+};
