@@ -49,7 +49,7 @@ const baseImageURI = "https://ipfs.io/ipfs/QmbBGQGGoYwPWepXRXQa3hY7BAaMUB413ddNT
 if (window.ethereum == undefined) {
     displayErrorMessage('Use a web3 enabled browser to stake Ape Runners!');
     $("#runners").empty();
-    $("#runners").append("<br><h3>No Ape Runners available...</h3>");
+    $("#runners").append("<div>No Ape Runners found.</div>");
 }
 
 const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
@@ -190,17 +190,17 @@ const checkRunnersApproval = async() => {
 
 async function displayApprovalMessage() {
     if (!($("#approval-popup").length)) {
-        let fakeJSX = `<div id="approval-popup">
-                        <p>Before staking, you must approve the Ape Vault staking contract to move your Ape Runners.
-                            <br>
-                            <br>
-                            <button class="button" id="approval-button" onclick="approveRunnersToVault()">APPROVE</button>
-                            <button class="button" onclick="hideApprovalDiv()">NOT NOW</button>
-                        </p>
-                        </div>`;
+        let fakeJSX = `<div id="approval-popup" class="popup">
+            <div class="popup-inner">
+                <div class="description">You must approve the Ape Vault staking contract before you can stake.</div>
+                <div class="flex justify-center space-x-4">
+                    <button class="button-ghost" onclick="hideApprovalDiv()">Close</button>
+                    <button class="button" id="approval-button" onclick="approveRunnersToVault()">Approve</button>
+                </div>
+                </p>
+            </div>
+        </div>`;
         $("body").append(fakeJSX);
-        let height = $(document).height();
-        $("body").append(`<div id='block-screen-approval' style="height:${height}px"></div>`);
     }
 }
 
@@ -356,14 +356,14 @@ var currentlyStaked = [];
 
 const getAperunnersImages = async()=>{
     $("#runners").empty();
-    $("#runners").append(`<br><h3>Loading Ape Runners<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>`);
+    $("#runners").append(`<div class="loading">Loading Ape Runners<span class="one">.</span><span class="two">.</span><span class="three">.</span></div>`);
 
     const unstakedRunnersNum = await getAperunnersEnum();
     const stakedRunnersNum = await getStakedAperunnersEnum();
     const totalAperunners = unstakedRunnersNum + stakedRunnersNum;
     if (totalAperunners == 0) {
         $("#runners").empty();
-        $("#runners").append("<br><h3>No Ape Runners available...</h3>");
+        $("#runners").append("<div>No Ape Runners found.</div>");
     }
     else {
         let batchFakeJSX = "";
@@ -378,11 +378,19 @@ const getAperunnersImages = async()=>{
                 active = "active";
             }
             batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
-                                <img src="${baseImageURI}${id}.png">
-                                <p>Ape Runner #${id}</p>
-                                <p>$RUN Earned: <span id="run-earned-${id}"><span class="one">.</span><span class="two">.</span><span class="three">.</span>​</span></p>
-                                <button class="button staked">STAKED</button>
-                                <button id="button-${id}" class="button select" onclick="selectForUnstaking(${id})">UNSTAKE</button>
+                                <div class="runner-status staked"></div>
+                                <div class="image-wrapper">
+                                    <img src="${baseImageURI}${id}.png">
+                                </div>
+                                <div class="runner-id">Ape Runner #${id}</div>
+                                <div class="runner-details">Staked
+
+                                <span style="display: none;">
+                                Earned $RUN: <span id="run-earned-${id}"><span class="one">.</span><span class="two">.</span><span class="three">.</span>​</span>
+                                </span>
+
+                                </div>
+                                <button id="button-${id}" class="button select" onclick="selectForUnstaking(${id})">Unstake</button>
                              </div>`
         };
 
@@ -395,11 +403,13 @@ const getAperunnersImages = async()=>{
                 active = "active";
             }
             batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
-                                <img src="${baseImageURI}${id}.png">
-                                <p>Ape Runner #${id}</p>
-                                <p>Not earning $RUN!</p>
-                                <button class="button unstaked">NOT STAKED</button>
-                                <button id="button-${id}" class="button select" onclick="selectForStaking(${id})">STAKE</button>
+                                <div class="runner-status unstaked"></div>
+                                <div class="image-wrapper">
+                                    <img src="${baseImageURI}${id}.png">
+                                </div>
+                                <div class="runner-id">Ape Runner #${id}</div>
+                                <div class="runner-details">Not staked</div>
+                                <button id="button-${id}" class="button select" onclick="selectForStaking(${id})">Stake</button>
                              </div>`
         };
         $("#runners").empty();
@@ -419,7 +429,7 @@ const updateRunEarned = async() => {
 
 const updateClaimingInfo = async()=>{
     if ((await getChainId()) === correctChain) {
-        const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>STAKING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
+        const loadingDiv = `<div class="loading-div" id="refresh-notification">Refreshing staking interface<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
         let apeRunnersNum = await getAperunnersEnum();
@@ -479,19 +489,19 @@ var selectedForUnstaking = new Set();
 async function selectForStaking(id) {
     if (!selectedForStaking.has(id)) {
         selectedForStaking.add(id);
-        $(`#button-${id}`).text("DESELECT")
+        $(`#button-${id}`).text("Deselect")
         $(`#runner-${id}`).addClass("active");
     }
     else {
         selectedForStaking.delete(id);
-        $(`#button-${id}`).text("STAKE")
+        $(`#button-${id}`).text("Stake")
         $(`#runner-${id}`).removeClass("active");
     }
     if (selectedForStaking.size == 0) {
         $("#selected-for-staking").text("None");
     }
     else {
-        let selectedString = `${Array.from(selectedForStaking).sort((a, b) => a - b).join(' ')}`;
+        let selectedString = `${Array.from(selectedForStaking).sort((a, b) => a - b).join(', ')}`;
         $("#selected-for-staking").text(selectedString);
     }
 }
@@ -499,12 +509,12 @@ async function selectForStaking(id) {
 async function selectForUnstaking(id) {
     if (!selectedForUnstaking.has(id)) {
         selectedForUnstaking.add(id);
-        $(`#button-${id}`).text("DESELECT")
+        $(`#button-${id}`).text("Deselect")
         $(`#runner-${id}`).addClass("active");
     }
     else {
         selectedForUnstaking.delete(id);
-        $(`#button-${id}`).text("UNSTAKE")
+        $(`#button-${id}`).text("Unstake")
         $(`#runner-${id}`).removeClass("active");
     }
     if (selectedForUnstaking.size == 0) {
@@ -512,7 +522,7 @@ async function selectForUnstaking(id) {
     }
     else {
         let selectedForUnstakingArray = Array.from(selectedForUnstaking).sort((a, b) => a - b);
-        let selectedString = `${selectedForUnstakingArray.join(' ')}`;
+        let selectedString = `${selectedForUnstakingArray.join(', ')}`;
         $("#selected-for-unstaking").text(selectedString);
     }
 }
@@ -549,7 +559,7 @@ function cachePendingTransactions() {
 function startLoading(tx) {
     let txHash = tx.hash;
     const etherscanLink = `${etherscanBase}${txHash}`;
-    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">PROCESSING<span class="one">.</span><span class="two">.</span><span class="three">.</span>​<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    const loadingDiv = `<a stlye="display: block;" href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">Processing...<br><span class="link">View on etherscan</span></div></a>`;
     $("#pending-transactions").append(loadingDiv);
     pendingTransactions.add(tx);
 }
@@ -565,7 +575,7 @@ async function endLoading(tx, txStatus) {
     else if (txStatus == 0) {
         $(`#loading-div-${txHash}`).addClass("failure");
     }
-    $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
+    $(`#loading-div-${txHash}`).append(`Transaction: ${status}<br><span class="link">View on etherscan</span>`);
     await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);

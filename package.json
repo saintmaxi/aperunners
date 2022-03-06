@@ -1,0 +1,21 @@
+{
+	"name": "aperunners",
+	"version": "1.0.0",
+	"description": "Aper Runners",
+	"main": "index.js",
+	"scripts": {
+		"sass": "sass --watch sass/main.scss:css/style.css",
+		"tailwind": "tailwind build -i tailwind/tailwind.css -o css/tailwind.css"
+	},
+	"author": "Bhakti Pasaribu",
+	"license": "ISC",
+	"devDependencies": {
+		"eslint": "^7.23.0",
+		"eslint-config-node": "^4.1.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^3.3.1",
+		"prettier": "^2.2.1",
+		"tailwindcss": "^2.2.19"
+	}
+}

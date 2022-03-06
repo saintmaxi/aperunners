@@ -1,0 +1,176 @@
+#stake-stats {
+	.stat-item {
+		padding: 25px;
+		text-align: center;
+	}
+
+	.stat-number {
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.stat-detail {
+		line-height: 1.35;
+	}
+
+	// responsive
+	@include above($lg) {
+		.stat-item {
+			&:not(:last-child) {
+				border-right: 1px solid #eee;
+			}
+		}
+	}
+	@include below($lg) {
+		.stat-item {
+			padding: 20px;
+		}
+		.stat-item {
+			&:nth-child(1), &:nth-child(2), &:nth-child(3) {
+				border-bottom: 1px solid #eee;
+			}
+			&:nth-child(1) {
+				border-right: 1px solid #eee;
+			}
+		}
+	}
+}
+
+#stake-controls-container {
+	padding: 15px 0;
+	z-index: 10;
+	backdrop-filter: saturate(180%) blur(50px);
+	-webkit-backdrop-filter: saturate(180%) blur(100px);
+	-moz-backdrop-filter: saturate(180%) blur(100px);
+
+	// responsive
+	@include above($md) {
+		position: sticky;
+		position: -webkit-sticky;
+		top: 80px;
+	}
+}
+
+.stake-controls-list {
+	.box {
+		text-align: center;
+		padding: 25px;
+		&:not(:last-child) {
+			border-right: 1px solid #eee;
+		}
+	}
+
+	.stake-buttons {
+		margin-top: 15px;
+	}
+
+	// responsive
+	@include below($md) {
+		.box {
+			&:not(:last-child) {
+				border-bottom: 1px solid #eee;
+				border-right: none;
+			}
+		}
+	}
+}
+
+// runners
+#runners {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 20px;
+
+	.runner {
+		padding: 20px;
+		background: white;
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+		transition: .3s all ease;
+		text-align: center;
+		position: relative;
+		> * {
+			position: relative;
+		}
+		&.active {
+			.runner-status.staked {
+				border-color: #e74c3c;
+			}
+			.runner-status.unstaked {
+				border-color: $blue;
+			}
+		}
+		&:hover {
+			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			.image-wrapper img {
+				mix-blend-mode: unset !important;
+			}
+		}
+	}
+
+	.button {
+		display: block;
+		text-align: center;
+		margin-top: 15px;
+		width: 100%;
+	}
+
+	.runner-status {
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		transition: .3s all ease;
+		border: 4px solid transparent;
+		&.staked + .image-wrapper {
+			img {
+				mix-blend-mode: luminosity;
+			}
+		}
+	}
+
+	.image-wrapper {
+		background: $blue;
+		margin-bottom: 10px;
+		position: relative;
+		// &:after {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	right: 0;
+		// 	bottom: 0;
+		// 	background: $blue;
+		// 	opacity: .5;
+		// }
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.runner-id {
+		font-size: 18px;
+		margin-bottom: 2px;
+		font-weight: bold;
+	}
+
+	.runner-details {
+		color: #555;
+	}
+
+	// responsive
+	@include below($lg) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include below($md) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include below($sm) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

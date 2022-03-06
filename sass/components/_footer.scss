@@ -1,0 +1,17 @@
+.social-media-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	li {
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+	svg {
+		display: block;
+		width: 30px;
+	}
+	.looksrare svg {
+		width: 32px;
+	}
+}

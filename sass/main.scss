@@ -1,0 +1,15 @@
+// mixins
+@import 'mixins/breakpoints';
+
+// base
+@import 'base/vars';
+@import 'base/reset';
+
+// components
+@import 'components/header';
+@import 'components/button';
+@import 'components/footer';
+@import 'components/popup';
+
+// pages
+@import 'pages/staking';
