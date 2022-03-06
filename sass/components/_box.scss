@@ -1,0 +1,45 @@
+.box-list {
+	grid-gap: 20px;
+	display: grid;
+
+	.box {
+		padding: 20px;
+		background: white;
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+		transition: .3s all ease;
+		text-align: center;
+		position: relative;
+		&:hover {
+			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+		}
+	}
+
+	.button {
+		display: block;
+		text-align: center;
+		margin-top: 15px;
+		width: 100%;
+	}
+
+	.image-wrapper {
+		background: $blue;
+		margin-bottom: 10px;
+		position: relative;
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.box-title {
+		font-size: 18px;
+		margin-bottom: 2px;
+		font-weight: bold;
+	}
+
+	.box-details {
+		color: #555;
+	}
+
+
+}

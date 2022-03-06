@@ -85,7 +85,6 @@ const updateCurrentChain = async() => {
     }
     else {
         $("#error-popup").remove();
-        $("#block-screen-error").remove();
     }
 }
 
@@ -122,7 +121,7 @@ const updateSerumOwned = async() => {
 
 const updateSerumInfo = async()=>{
     if ((await getChainId()) === correctChain) {
-        const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>SERUM INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
+        const loadingDiv = `<div class="loading-div" id="refresh-notification">Refreshing UI...</div>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
         await updateSerumSupplies();
@@ -158,7 +157,7 @@ function updatePrice(id) {
     else if (id == 3) {
         totalPrice = V3price * currentClaim;
     }
-    $(`#buy-button-v${id}`).text(`BUY FOR ${totalPrice} $RUN`);
+    $(`#buy-button-v${id}`).text(`Buy for ${totalPrice} $RUN`);
 }
 
 function incrementClaim(id) {
@@ -246,7 +245,7 @@ function cachePendingTransactions() {
 function startLoading(tx) {
     let txHash = tx.hash;
     const etherscanLink = `${etherscanBase}${txHash}`;
-    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">PROCESSING<span class="one">.</span><span class="two">.</span><span class="three">.</span>​<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    const loadingDiv = `<a stlye="display: block;" href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">Processing...<br><span class="link">View on etherscan</span></div></a>`;
     $("#pending-transactions").append(loadingDiv);
     pendingTransactions.add(tx);
 }
@@ -262,7 +261,7 @@ async function endLoading(tx, txStatus) {
     else if (txStatus == 0) {
         $(`#loading-div-${txHash}`).addClass("failure");
     }
-    $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
+    $(`#loading-div-${txHash}`).append(`Transaction: ${status}<br><span class="link">View on etherscan</span>`);
     await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);

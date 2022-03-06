@@ -206,14 +206,14 @@ const claimAll = async() => {
 
 const getAperunnersImages = async()=>{
     $("#runners").empty();
-    $("#runners").append(`<br><h3>Loading Ape Runners<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>`);
+    $("#runners").append(`<div>Loading Ape Runners...</div>`);
 
     const unstakedRunnersNum = await getAperunnersEnum();
     const stakedRunnersNum = await getStakedAperunnersEnum();
     const totalAperunners = unstakedRunnersNum + stakedRunnersNum;
     if (totalAperunners == 0) {
         $("#runners").empty();
-        $("#runners").append("<br><h3>No Ape Runners available...</h3>");
+        $("#runners").append("<div>No Ape Runners found</div>");
     }
     else {
         let batchFakeJSX = "";
@@ -227,11 +227,13 @@ const getAperunnersImages = async()=>{
                     active = "active";
                 }
                 batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
+                                <div class="runner-status unstaked"></div>
+                                <div class="image-wrapper">
                                     <img src="${baseImageURI}${id}.png">
-                                    <p>Ape Runner #${id}</p>
-                                    <p>Airdrop available!</p>
-                                    <button class="button unstaked">NOT STAKED</button>
-                                    <button id="button-${id}" class="button select" onclick="selectForClaiming(${id})">CLAIM AIRDROP</button>
+                                </div>
+                                <div class="box-title">Ape Runner #${id}</div>
+                                <div class="box-details">Airdrop available</div>
+                                <button id="button-${id}" class="button select" onclick="selectForClaiming(${id})">Claim Airdrop</button>
                                  </div>`
             }
         };
@@ -247,14 +249,16 @@ const getAperunnersImages = async()=>{
                     active = "active";
                 }
                 batchFakeJSX += `<div id="runner-${id}" class="runner box ${active}">
+                                <div class="runner-status staked"></div>
+                                <div class="image-wrapper">
                                     <img src="${baseImageURI}${id}.png">
-                                    <p>Ape Runner #${id}</p>
-                                    <p>Airdrop available!</p>
-                                    <button class="button staked">STAKED</button>
-                                    <a href="./index.html">
-                                        <button id="button-${id}" class="button select"">UNSTAKE TO CLAIM</button>
-                                    </a>
-                                 </div>`
+                                </div>
+                                <div class="box-title">Ape Runner #${id}</div>
+                                <div class="box-details">Airdrop available</div>
+                                <a href="./index.html">
+                                    <button id="button-${id}" class="button select"">Unstake to claim</button>
+                                </a>
+                            </div>`;
             }
         };
         $("#runners").empty();
@@ -264,7 +268,7 @@ const getAperunnersImages = async()=>{
 
 const updateClaimingInfo = async()=>{
     if ((await getChainId()) === correctChain) {
-        const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING <br>STAKING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
+        const loadingDiv = `<div class="loading-div" id="refresh-notification">Refreshing UI...</div>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
         await getAperunnersImages();
@@ -300,12 +304,12 @@ var selectedForClaiming = new Set();
 async function selectForClaiming(id) {
     if (!selectedForClaiming.has(id)) {
         selectedForClaiming.add(id);
-        $(`#button-${id}`).text("DESELECT")
+        $(`#button-${id}`).text("Deselect")
         $(`#runner-${id}`).addClass("active");
     }
     else {
         selectedForClaiming.delete(id);
-        $(`#button-${id}`).text("UNSTAKE")
+        $(`#button-${id}`).text("Claim Airdrop")
         $(`#runner-${id}`).removeClass("active");
     }
     if (selectedForClaiming.size == 0) {
@@ -313,7 +317,7 @@ async function selectForClaiming(id) {
     }
     else {
         let selectedForClaimingArray = Array.from(selectedForClaiming).sort((a, b) => a - b);
-        let selectedString = `${selectedForClaimingArray.join(' ')}`;
+        let selectedString = `${selectedForClaimingArray.join(', ')}`;
         $("#selected-for-claiming").text(selectedString);
     }
 }
@@ -350,7 +354,7 @@ function cachePendingTransactions() {
 function startLoading(tx) {
     let txHash = tx.hash;
     const etherscanLink = `${etherscanBase}${txHash}`;
-    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">PROCESSING<span class="one">.</span><span class="two">.</span><span class="three">.</span>​<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    const loadingDiv = `<a stlye="display: block;" href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">Processing...<br><span class="link">View on etherscan</span></div></a>`;
     $("#pending-transactions").append(loadingDiv);
     pendingTransactions.add(tx);
 }
@@ -366,7 +370,7 @@ async function endLoading(tx, txStatus) {
     else if (txStatus == 0) {
         $(`#loading-div-${txHash}`).addClass("failure");
     }
-    $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
+    $(`#loading-div-${txHash}`).append(`Transaction: ${status}.<br>View on etherscan.`);
     await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);

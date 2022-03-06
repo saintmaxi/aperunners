@@ -77,17 +77,7 @@
 
 // runners
 #runners {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 20px;
-
 	.runner {
-		padding: 20px;
-		background: white;
-		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-		transition: .3s all ease;
-		text-align: center;
-		position: relative;
 		> * {
 			position: relative;
 		}
@@ -100,18 +90,10 @@
 			}
 		}
 		&:hover {
-			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 			.image-wrapper img {
 				mix-blend-mode: unset !important;
 			}
 		}
-	}
-
-	.button {
-		display: block;
-		text-align: center;
-		margin-top: 15px;
-		width: 100%;
 	}
 
 	.runner-status {
@@ -129,36 +111,6 @@
 				mix-blend-mode: luminosity;
 			}
 		}
-	}
-
-	.image-wrapper {
-		background: $blue;
-		margin-bottom: 10px;
-		position: relative;
-		// &:after {
-		// 	content: '';
-		// 	position: absolute;
-		// 	top: 0;
-		// 	left: 0;
-		// 	right: 0;
-		// 	bottom: 0;
-		// 	background: $blue;
-		// 	opacity: .5;
-		// }
-		img {
-			display: block;
-			width: 100%;
-		}
-	}
-
-	.runner-id {
-		font-size: 18px;
-		margin-bottom: 2px;
-		font-weight: bold;
-	}
-
-	.runner-details {
-		color: #555;
 	}
 
 	// responsive

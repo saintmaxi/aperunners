@@ -49,7 +49,7 @@ const baseImageURI = "https://ipfs.io/ipfs/QmbBGQGGoYwPWepXRXQa3hY7BAaMUB413ddNT
 if (window.ethereum == undefined) {
     displayErrorMessage('Use a web3 enabled browser to stake Ape Runners!');
     $("#runners").empty();
-    $("#runners").append("<div>No Ape Runners found.</div>");
+    $("#runners").append("<div>No Ape Runners found</div>");
 }
 
 const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
@@ -99,7 +99,6 @@ const updateCurrentChain = async() => {
     }
     else {
         $("#error-popup").remove();
-        $("#block-screen-error").remove();
     }
 }
 
@@ -206,7 +205,6 @@ async function displayApprovalMessage() {
 
 function hideApprovalDiv() {
     $("#approval-popup").remove();
-    $("#block-screen-approval").remove();
     hideApproval = true;
 }
 
@@ -356,14 +354,14 @@ var currentlyStaked = [];
 
 const getAperunnersImages = async()=>{
     $("#runners").empty();
-    $("#runners").append(`<div class="loading">Loading Ape Runners<span class="one">.</span><span class="two">.</span><span class="three">.</span></div>`);
+    $("#runners").append(`<div class="loading">Loading Ape Runners...</div>`);
 
     const unstakedRunnersNum = await getAperunnersEnum();
     const stakedRunnersNum = await getStakedAperunnersEnum();
     const totalAperunners = unstakedRunnersNum + stakedRunnersNum;
     if (totalAperunners == 0) {
         $("#runners").empty();
-        $("#runners").append("<div>No Ape Runners found.</div>");
+        $("#runners").append("<div>No Ape Runners found</div>");
     }
     else {
         let batchFakeJSX = "";
@@ -382,8 +380,8 @@ const getAperunnersImages = async()=>{
                                 <div class="image-wrapper">
                                     <img src="${baseImageURI}${id}.png">
                                 </div>
-                                <div class="runner-id">Ape Runner #${id}</div>
-                                <div class="runner-details">Staked
+                                <div class="box-title">Ape Runner #${id}</div>
+                                <div class="box-details">Staked
 
                                 <span style="display: none;">
                                 Earned $RUN: <span id="run-earned-${id}"><span class="one">.</span><span class="two">.</span><span class="three">.</span>​</span>
@@ -429,7 +427,7 @@ const updateRunEarned = async() => {
 
 const updateClaimingInfo = async()=>{
     if ((await getChainId()) === correctChain) {
-        const loadingDiv = `<div class="loading-div" id="refresh-notification">Refreshing staking interface<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div>`;
+        const loadingDiv = `<div class="loading-div" id="refresh-notification">Refreshing UI...</div>`;
         $("#pending-transactions").append(loadingDiv);
         await getRunBalance();
         let apeRunnersNum = await getAperunnersEnum();
