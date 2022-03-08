@@ -17,8 +17,8 @@ const V1supply = 4500;
 const V2supply = 490;
 const V3supply = 10;
 const V1price = 300;
-const V2price = 900;
-const V3price = 3000;
+const V2price = 1500;
+const V3price = 15000;
 
 const etherscanBase = `https://etherscan.io/tx/`;
 const correctChain = 1;
