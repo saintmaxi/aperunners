@@ -127,7 +127,23 @@ const getRunBalance = async()=>{
 
 const receivedAirdrop = async(id) => {
     const received = await run.airdroped(id);
+    const msg = received ? `#${id} has claimed airdrop!` : `#${id} has not claimed airdrop!`
+    $("#airdrop-claimed").html(msg)
     return received;
+}
+
+const lookUpAirdropClaim = async() => {
+    const id = $("#token-id").val();
+    let msg;
+    if (id < 0 || id > 4999) {
+        msg = "Invalid token ID! Valid IDs are from 0-4999."
+    }
+    else {
+        const received = await run.airdroped(id);
+        msg = received ? `#${id} has claimed airdrop!` : `#${id} has not claimed airdrop!`;
+    }
+    $("#airdrop-claimed").html(msg);
+    $("#airdrop-claimed-container").removeClass("hidden");
 }
 
 const claimByIds = async()=>{

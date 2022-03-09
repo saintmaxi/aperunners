@@ -95,6 +95,30 @@
       </div>
    </section>
 
+   <section id="content" class="pt-6 pb-20">
+      <div class="container">
+         <div class="title-with-line">
+            <div class="title">Lookup Tool</div>
+         </div>
+         <div class="bg-white shadow stake-controls-list">
+            <div class="box stake-controls">
+                <div class="stake-details">
+                  <div class="selected">
+                     Check if a token has already claimed airdrop.
+                  </div>
+                  <input min=0 max=4999 type="number" id="token-id" placeholder="Enter Token ID" value="">
+                </div>
+                <div class="flex justify-center stake-buttons space-x-4 hidden" id="airdrop-claimed-container">
+                  <div class="selected" id="airdrop-claimed"></div>
+               </div>
+                <div class="flex justify-center stake-buttons space-x-4">
+                   <button id="stakeAllButton" class="button" onclick="lookUpAirdropClaim()">Check Airdrop</button>
+                 </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
    <footer class="pb-20">
       <div class="container">
          <ul class="social-media-list">
